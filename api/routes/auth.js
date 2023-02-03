@@ -62,7 +62,7 @@ const uploadFile = require('../utils/uploadFile');
 router.post('/signup', async (req, res) => {
   const { password } = req.query;
   let phoneNumber = req.query.phonenumber;
-
+  let name = req.query.username;
   if (phoneNumber === undefined || password === undefined) {
     return callRes(res, responseError.PARAMETER_IS_NOT_ENOUGH, 'phoneNumber, password');
   }
@@ -82,6 +82,7 @@ router.post('/signup', async (req, res) => {
     let user = await User.findOne({phoneNumber});
     if (user) return callRes(res, responseError.USER_EXISTED);
     const newUser = new User({
+      name,
       phoneNumber,
       password,
       verifyCode: random4digit(),
@@ -105,6 +106,7 @@ router.post('/signup', async (req, res) => {
           let data = {
             id: saved.id,
             phoneNumber: saved.phoneNumber,
+            name:saved.name,
             verifyCode: saved.verifyCode,
             isVerified: saved.isVerified
           }
