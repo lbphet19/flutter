@@ -86,6 +86,10 @@ router.post('/signup', async (req, res) => {
       phoneNumber,
       password,
       verifyCode: random4digit(),
+      avatar:{
+        fileName:'default avatar',
+        url:'https://st.depositphotos.com/2218212/2938/i/450/depositphotos_29387653-stock-photo-facebook-profile.jpg'
+      },
       // isVerified: false
       isVerified:true
     });

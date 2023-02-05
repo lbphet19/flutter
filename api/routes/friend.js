@@ -58,7 +58,7 @@ router.post('/get_requested_friends', verify, async (req, res) => {
       sentUser = await User.findById(sentUserID)
         .select({ "friends": 1, "friendRequestSent": 1, "phoneNumber": 1, "_id": 1, "name": 1, "avatar": 1 });
 
-      // console.log(sentUser);
+      console.log(sentUser);
       newElement.id = sentUser._id;
       newElement.username = sentUser.name;
       newElement.avatar = sentUser.avatar.url;
