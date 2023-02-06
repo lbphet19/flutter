@@ -419,9 +419,7 @@ router.post('/get_user_friends', verify, async (req, res) => {
     let endFor = targetUser.friends.length < index + count ? targetUser.friends.length : index + count;
     for (let i = index; i < endFor; i++) {
       let x1 = targetUser.friends[i];
-      console.log(x1.friend._id)
       let x = await User.findById(x1.friend._id)
-      console.log(x)
       let friendInfor = {
         id: null, // id of this guy
         username: null,
@@ -433,9 +431,8 @@ router.post('/get_user_friends', verify, async (req, res) => {
       friendInfor.username = x.name;
       friendInfor.avatar = x.avatar.url;
       friendInfor.created = validTime.timeToSecond(x.createdAt) ;
-
       // if (!thisUser._id.equals(x.friend._id))
-        if (thisUser.friends.length > 0 && x.friend.friends.length > 0) {
+        if (thisUser.friends.length > 0 && x.friends.length > 0) {
           friendInfor.same_friends = countSameFriend(thisUser.friends, x.friends);
         }
       data.friends.push(friendInfor);
