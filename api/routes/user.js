@@ -160,7 +160,7 @@ router.post('/set_user_info', cpUpload, verify, async (req, res) => {
       if (user.avatar.filename){
         try {
           console.log('xoa avatar...');
-          await deleteRemoteFile(user.avatar.filename);
+          // await deleteRemoteFile(user.avatar.filename);
           console.log('xoa avatar xong!');
         } catch (error) {
           console.log('xoa avatar failed');
@@ -182,7 +182,7 @@ router.post('/set_user_info', cpUpload, verify, async (req, res) => {
       if (user.coverImage.filename){
         try {
           console.log('xoa coverImage...');
-          await deleteRemoteFile(user.coverImage.filename);
+          // await deleteRemoteFile(user.coverImage.filename);
           console.log('xoa coverImage xong!');
         } catch (error) {
           console.log('xoa coverImage failed');
@@ -236,6 +236,6 @@ const checkTypeImage = (image) => {
 
 
 
-async function deleteRemoteFile(filename) {
-  await bucket.file(filename).delete();
-}
+// async function deleteRemoteFile(filename) {
+//   await bucket.file(filename).delete();
+// }
